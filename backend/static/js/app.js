@@ -200,6 +200,7 @@ function renderResourceCard(resource) {
                         allowfullscreen
                     ></iframe>
                 </div>
+                <p><a href="${escapeHtml(resource.youtube_url || "")}" target="_blank" rel="noopener noreferrer">Open on YouTube</a></p>
             </article>
         `;
     }
@@ -359,6 +360,7 @@ function openModal(concept) {
                     allowfullscreen
                 ></iframe>
             </div>
+            <p><a href="${escapeHtml(concept.popup_youtube_url)}" target="_blank" rel="noopener noreferrer">Open on YouTube</a></p>
         `);
     }
 
