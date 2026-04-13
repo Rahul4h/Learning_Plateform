@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Learning Platform</title>
+    <link rel="stylesheet" href="{% static 'css/site.css' %}?v=3">
+</head>
+<body>
+    <div class="app-shell">
+        <header class="hero">
+            <div class="hero-copy">
+                <p class="eyebrow">Interactive Learning Platform</p>
+                <h1>Study one topic through text, audio, image, video, and YouTube resources.</h1>
+                <p class="hero-text">
+                    Search a topic, open its learning materials, click concepts inside text, and explore
+                    supporting notes from the right sidebar.
+                </p>
+                <div class="hero-stats" id="hero-stats">
+                    <div class="stat-chip">
+                        <span class="stat-label">Topics</span>
+                        <strong id="topic-count">0</strong>
+                    </div>
+                    <div class="stat-chip">
+                        <span class="stat-label">Active Tab</span>
+                        <strong id="active-tab-label">Text</strong>
+                    </div>
+                </div>
+            </div>
+            <form class="search-panel" id="search-form">
+                <label class="search-label" for="topic-search">Search topic</label>
+                <div class="search-row">
+                    <input id="topic-search" name="q" type="search" placeholder="Try Dynamic Programming">
+                    <button type="submit">Search</button>
+                </div>
+                <p class="helper-text">Same page, same backend, no extra frontend server needed.</p>
+            </form>
+        </header>
+
+        <main class="workspace">
+            <aside class="topics-panel card">
+                <div class="panel-header">
+                    <h2>Topics</h2>
+                    <button id="reload-topics" type="button" class="ghost-button">Reload</button>
+                </div>
+                <div id="topics-list" class="topics-list"></div>
+            </aside>
+
+            <section class="content-panel card">
+                <div class="panel-header">
+                    <div>
+                        <p class="section-label">Selected Topic</p>
+                        <h2 id="topic-title">Choose a topic</h2>
+                    </div>
+                    <div class="api-badge" id="topic-meta">Waiting for selection</div>
+                </div>
+                <p id="topic-description" class="topic-description">
+                    Select a topic from the left panel to load text, audio, image, video, and YouTube resources.
+                </p>
+
+                <div class="tab-bar" id="tab-bar">
+                    <button class="tab-button active" data-tab="text" type="button">Text</button>
+                    <button class="tab-button" data-tab="audio" type="button">Audio</button>
+                    <button class="tab-button" data-tab="image" type="button">Image</button>
+                    <button class="tab-button" data-tab="video" type="button">Video</button>
+                    <button class="tab-button" data-tab="youtube" type="button">YouTube</button>
+                </div>
+
+                <div id="resource-area" class="resource-area">
+                    <div class="empty-state">
+                        <h3>No topic selected yet</h3>
+                        <p>Pick a topic from the left to load its resources.</p>
+                    </div>
+                </div>
+            </section>
+
+            <aside class="sidebar-panel card">
+                <div class="panel-header">
+                    <div>
+                        <p class="section-label">Right Sidebar</p>
+                        <h2>Topic Notes</h2>
+                    </div>
+                </div>
+                <div class="sidebar-caption">Introduction, detailed explanation, and additional resources stay pinned here while you study the main content.</div>
+                <div id="sections-list" class="sections-list">
+                    <div class="empty-note">Introduction, detailed explanation, and additional resources will appear here.</div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <div class="modal hidden" id="concept-modal" aria-hidden="true">
+        <div class="modal-backdrop" data-close-modal="true"></div>
+        <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+            <button class="modal-close" id="modal-close" type="button">×</button>
+            <div id="modal-body" class="modal-body"></div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/app.js' %}?v=3"></script>
+</body>
+</html>
